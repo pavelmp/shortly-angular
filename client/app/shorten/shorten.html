@@ -1,6 +1,33 @@
 <div id='container'>
-<!-- Your code here -->
+  <div class="navigation" >
+    <ul>
+      <li>
+        <a href="#/links" class="index">All Links</a>
+      </li>
+      <li>
+       <a href="#/shorten" class="create selected">Shorten</a>
+      </li>
+      <li>
+       <a href="#/logout" class="logout" ng-click="Auth.signout()">Logout</a>
+      </li>
+    </ul> 
+  </div>
 
+  <div id='shorten'>
+    <form name='shortlyForm' ng-submit="addLink()" >
+      <input class='text' type='url' name='urlLink' placeholder='Enter your URL here' ng-model="link.url" required ng-class={'error': shortlyForm.$invalid && shortlyForm.$dirty}>
+      <p ng-show='shortlyForm.urlLink.$error.url && shortlyForm.$dirty'>Not a valid URL</p>  
+      <input type='submit' value='Shorten' ng-disabled="shortlyForm.$invalid" required>
+    </form>
+    <div class='message' ng-show="showMessage">
+      <div class="link">
+        <img src='assets/redirect_icon.png'/>
+        <div class='info'>
+          <div class='visits'><span class='count'>{{oneLink.visits}}</span>Visits</div>
+          <div class='title'>{{oneLink.title}}</div>
+          <div class='original'>{{oneLink.url}}</div>
+          <a href='{{oneLink.baseUrl}}/{{oneLink.code}}'>{{oneLink.baseUrl}}/{{oneLink.code}}</a>
+        </div>
+      </div>  
+    </div>
 </div>
-
-

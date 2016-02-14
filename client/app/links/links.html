@@ -1,3 +1,28 @@
 <div id='container'>
-  <!-- Your html here -->
-</div>
+  <div class="navigation" >
+    <ul>
+      <li>
+        <a href="#/links" class="index selected">All Links</a>
+      </li>
+      <li>
+       <a href="#/shorten" class="create">Shorten</a>
+      </li>
+      <li>
+       <a href="#/logout" class="logout" ng-click="Auth.signout()">Logout</a>
+      </li>
+    </ul> 
+  </div>  
+
+  <input ng-model='filterText' placeholder="Filter links"/>
+
+  <div id='links'>
+    <div class="link" ng-repeat="link in data.links | filter: filterText | orderBy:'-visits'">
+      <img src='assets/redirect_icon.png'/>
+      <div class='info'>
+        <div class='visits'><span class='count'>{{link.visits}}</span>Visits</div>
+        <div class='title'>{{link.title}}</div>
+        <div class='original'>{{link.url}}</div>
+        <a href='{{link.baseUrl}}/{{link.code}}'>{{link.baseUrl}}/{{link.code}}</a>
+      </div>
+    </div>  
+  </div>
